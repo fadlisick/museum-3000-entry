@@ -2,7 +2,7 @@
 """Museum of the Year 3000 - museum label entry.
 
 Writes one deadpan museum label to /output/entry.txt: the year-3000
-curator's label beside a lint roller from today.
+curator's label beside a treadmill from today.
 """
 
 import os
@@ -10,8 +10,8 @@ import stat
 import sys
 
 ENTRY = (
-    "Lint roller, c. 2023. A ceremonial adhesive wand, rolled over "
-    "clothing to remove the sins of pet ownership."
+    "Treadmill, c. 2022. A stationary penance belt where citizens walked "
+    "briskly toward a blank wall to atone for eating bread."
 )
 
 GATE_MIN = 1
@@ -47,6 +47,8 @@ def write_entry():
 def verify(path):
     with open(path, "rb") as handle:
         raw = handle.read()
+    if len(raw) != 122:
+        raise SystemExit("entry.txt must be exactly 122 bytes")
     if raw != ENTRY.encode("utf-8"):
         raise SystemExit("entry.txt bytes do not match the locked label")
     with open(path, "r", encoding="utf-8", newline="") as handle:
